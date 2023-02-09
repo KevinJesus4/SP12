@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="supuesto.css">
+    <title>Practica Supuesto - Prueba</title>
+    <script>
+
+        function printError(elemId, hintMsg){
+        document.getElementById(elemId).innerHTML = hintMsg;
+        document.getElementById(elemId).style.color = "orange";
+        document.getElementById(elemId).style.fontWeight = "lighter";
+        }
+
+        function validateForm(){
+            var nombre = document.myForm.nombre.value;
+            var apellido = document.myForm.apellido.value;
+            var apellido2 = document.myForm.apellido2.value;
+            var direccion = document.myForm.direccion.value;
+            var postal = document.myForm.postal.value;
+            var municipio = document.myForm.municipio.value;
+            var provincia = document.myForm.provincia.value;
+            var pais = document.myForm.pais.value;
+            var email = document.myForm.email.value;
+            var telefono = document.myForm.telefono.value;
+            var movil = document.myForm.movil.value;
+
+
+            var nombreErr = apellidoErr = apellido2Err = direccionErr = postalErr =  municipioErr = provinciaErr = paisErr = emailErr = telefonoErr = movilErr = true;
+
+
+            if(nombre == ""){
+                printError("nombreErr","Introduce un nombre");
+            }else{
+                var regex = /^[a-zA-Z]+$/;
+                if(regex.test(nombre) === false){
+                    printError("nombreErr", "Introduce un nombre valido");  
+                }else {
+                    printError("nombreErr", "");
+                    nombreErr = false;
+                }  
+            }
+            if(apellido == ""){
+                printError("apellidoErr","Introduce el primer apellido");
+            }else{
+                var regex = /^[a-zA-Z]+$/;
+                if(regex.test(apellido) === false){
+                    printError("apellidoErr", "Introduce un apellido valido");  
+                }else {
+                    printError("apellidoErr", "");
+                    apellidoErr = false;
+                }  
+            }
+            if(apellido2 == ""){
+                printError("apellido2Err","Introduce el segundo apellido");
+            }else{
+                var regex = /^[a-zA-Z]+$/;
+                if(regex.test(apellido2) === false){
+                    printError("apellido2Err", "Introduce un apellido valido");  
+                }else {
+                    printError("apellido2Err", "");
+                    apellido2Err = false;
+                }  
+            }
+            if(direccion == ""){
+                printError("direccionErr","Introduce una direccion");
+            }else{
+                var regex = /^\d+ [A-Za-zÁáÉéÍíÓóÚúÑñ0-9_\.\-\s]+[,]* [0-9]+[°]* [A-Za-z0-9_\.\-\s]+$/;
+                if(regex.test(direccion) === false){
+                    printError("direccionErr", "Introduce una direccion valida");  
+                }else {
+                    printError("direccionErr", "");
+                    direccionErr = false;
+                }  
+            }
+            if(postal == ""){
+                printError("postalErr","Introduce un codigo postal");
+            }else{
+                var regex = /^\d{5}$/;
+                if(regex.test(postal) === false){
+                    printError("postalErr", "Introduce un codigo postal valido");  
+                }else {
+                    printError("postalErr", "");
+                    postalErr = false;
+                }  
+            }
+            if(municipio == ""){
+                printError("municipioErr","Introduce un municipio");
+            }else{
+                var regex = /^[a-zA-ZÀ-ÿ\s]+$/;
+                if(regex.test(municipio) === false){
+                    printError("municipioErr", "Introduce un municipio valido");  
+                }else {
+                    printError("municipioErr", "");
+                    municipioErr = false;
+                }  
+            }
+            if(provincia == "Select"){
+                printError("provinciaErr","Por favor seleccione una provincia");
+            }else{
+                printError("provinciaErr", "");
+                provinciaErr = false;
+            }
+            if(pais == "Select"){
+                printError("paisErr","Por favor seleccione un pais");
+            }else{
+                printError("paisErr", "");
+                paisErr = false;
+            }
+            if(email == "") {
+                printError("emailErr", "Introduce un correo electronico");
+            } else {
+                var regex = /^\S+@\S+\.\S+$/;// \S non-whitespace
+                if(regex.test(email) === false) {
+                    printError("emailErr", "Introduce un correo electrronico válido");
+                } else{
+                    printError("emailErr", "");
+                emailErr = false;
+                }
+            }
+            if(telefono == "") {
+                printError("telefonoErr", "Introduce un numero telefono");
+            } else {
+                var regex = /^\d{9}$/;
+                if(regex.test(telefono) === false) {
+                    printError("telefonoErr", "Introduce un telefono válido");
+                } else{
+                    printError("telefonoErr", "");
+                    telefonoErr = false;
+                }
+            }
+            if(movil == "") {
+                printError("movilErr", "Introduce un numero movil");
+            } else {
+                var regex = /^\d{9}$/;
+                if(regex.test(movil) === false) {
+                    printError("movilErr", "Introduce un movil válido");
+                } else{
+                    printError("movilErr", "");
+                    movilErr = false;
+                }
+            }
+
+
+            if((nombreErr || apellidoErr || apellido2Err || direccionErr || postalErr || municipioErr || provinciaErr || paisErr || telefonoErr || movilErr) == true){
+                return false;
+            }else{
+                var mostrarDatos = "Los datos: \n" +
+                "Nombre: " + nombre + "\n" +
+                "Primer Apellido: " + apellido + "\n" +
+                "Segundo Apellido: " + apellido2 + "\n" +
+                "Dirección: " + direccion + "\n" +
+                "Codigo Postal: " + postal + "\n" +
+                "Municipio: " + municipio + "\n" +
+                "Provincia: " + provincia + "\n" +
+                "País: " + pais + "\n" +
+                "Telefono: " + telefono + "\n" +
+                "Movil: " + movil;
+            }
+
+            alert(mostrarDatos);
+        }
+
+    </script>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validateForm()" method="post">
+        <div class="contenido">
+            <h1>SUPUESTO PRACTICO UT6</h1>
+
+            Nombre: 
+            <br><input type="text" name="nombre" id="nombre">
+            <div class="error" id="nombreErr"></div><br>
+
+
+            Apellido: <br>
+            <input type="text" name="apellido" id="apellido">
+            <div class="error" id="apellidoErr"></div>
+            <input type="text" name="apellido2" id="apellido2">
+            <div class="error" id="apellido2Err"></div><br>
+
+            
+            Dirección: <br>
+            <input type="text" name="direccion" id="direccion">
+            <div class="error" id="direccionErr"></div><br>
+
+            
+                
+                    Codigo Postal: <br>
+                    <input type="text" name="postal" id="postal" >
+                    <div class="error" id="postalErr"></div><br>
+
+                    
+                    Municipio: <br>
+                    <input type="text" name="municipio" id="municipio">
+                    <div class="error" id="municipioErr"></div><br>
+
+                    Provincia:<br>                   
+                    <select name="provincia" id="provincia">
+                        <option>Select</option>
+                        <option>Valencia</option>
+                        <option>Las Palmas</option>
+                        <option>Teruel</option>
+                        <option>Madrid</option>
+                    </select>
+                    <div class="error" id="provinciaErr"></div><br>
+
+                    País:<br>                   
+                    <select name="pais" id="pais">
+                        <option>Select</option>
+                        <option>España</option>
+                        <option>Portugal</option>
+                        <option>Mexico</option>
+                        <option>Brasil</option>
+                    </select>
+                    <div class="error" id="paisErr"></div><br>
+                
+           
+            
+            Email: <br>
+            <input type="text" name="email" id="email">
+            <div class="error" id="emailErr"></div><br>
+
+            Telefono: <br>
+            <input type="text" name="telefono" id="telefono">
+            <div class="error" id="telefonoErr"></div><br>
+
+            Movil: <br>
+            <input type="text" name="movil" id="movil">
+            <div class="error" id="movilErr"></div><br>
+
+
+
+
+            <input type="submit" value="Darse de alta" onclick="validateForm()">
+            <input type="button" value="Reset data" onclick="reset()">
+        </div>
+    </form>
+</body>
+</html>
